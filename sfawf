@@ -70,6 +70,19 @@ Main:Button("Credits",function()
     )
 end)
 
+Main:Colorpicker("Selection Color",Color3.fromRGB(255, 0, 0),function(t)
+    getgenv().slco = t
+end)
+
+Main:Toggle("Selection",function(t)
+    getgenv().sc = t
+    spawn(function()
+        while getgenv().sc == true and wait() do
+            game:GetService("Workspace").SelectionBox.Color3 = getgenv().slco
+        end
+    end)
+end)
+
 ---HEALS-------------------------------------------------------------------------------------------
 
 -- global variables
