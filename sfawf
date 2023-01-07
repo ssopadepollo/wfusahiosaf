@@ -55,7 +55,9 @@ Main:Label("Toggle GUI with Right Ctrl")
 Main:Button("Destroy GUI",function()
     game:GetService("CoreGui").Library:Destroy()
 end)
-Main:Button("Join Discord",function()
+Main:Button("Copy Discord Link",function()
+    local copy = "https://discord.gg/rudE7ucZdx"
+    setclipboard(tostring(copy))
     inviteModule.Join("https://discord.gg/rudE7ucZdx")
 end)
 Main:Colorpicker("Notification Color",Color3.fromRGB(255, 0, 0),function(t)
@@ -696,7 +698,7 @@ end)
 Farm:Toggle("Auto Plant",function(t)
     getgenv().tplant = t
     spawn(function()
-        while getgenv().tplant == true and wait() do
+        while getgenv().tplant == true and wait(2) do
             for _, v in pairs(game:GetService("Workspace").Deployables:GetChildren()) do
                 if v.Name == "Plant Box" and (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - v.PrimaryPart.Position).magnitude < getgenv().magnitude then
                     game.ReplicatedStorage.Events.InteractStructure:FireServer(v, getgenv().tplantt)
@@ -720,7 +722,7 @@ end)
 Farm:Toggle("Harverest",function(t)
     getgenv().hplant = t
     spawn(function()
-        while getgenv().hplant == true and wait() do
+        while getgenv().hplant == true and wait(1) do
             for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
                 if v.Name == getgenv().hplantt and (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - v.PrimaryPart.Position).magnitude < getgenv().magnitude1 then
                     game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
