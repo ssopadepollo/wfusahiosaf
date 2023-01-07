@@ -2660,6 +2660,52 @@ Inv:Button("Armor Invisible",function()
         end	
 end)
 
+Inv:Button("Chestplate Invisible",function()
+    local v = game.Players.LocalPlayer
+
+    for i, c in pairs(v.Character:GetDescendants()) do
+    if c.Name:find("Chestplate") then
+    c.Handle.AccessoryWeld:Destroy()
+    end
+    end
+    for i, c in pairs(v.Character:GetDescendants()) do
+    if c.Name:find("Left Shoulder") then
+    c.Handle.AccessoryWeld:Destroy()
+    end
+    end
+    for i, c in pairs(v.Character:GetDescendants()) do
+    if c.Name:find("Right Shoulder") then
+    c.Handle.AccessoryWeld:Destroy()
+    end
+    end
+end)
+
+Inv:Button("Legs Invisible",function()
+    local v = game.Players.LocalPlayer
+
+    for i, c in pairs(v.Character:GetDescendants()) do
+    if c.Name:find("Legs") then
+    c.Handle.AccessoryWeld:Destroy()
+    end
+    end
+    local v = game.Players.LocalPlayer
+
+    for i, c in pairs(v.Character:GetDescendants()) do
+    if c.Name:find("Legs Foot") then
+    c.Handle.AccessoryWeld:Destroy()
+    end
+    end
+end)
+
+Inv:Button("God Halo Invisible",function()
+    local v = game.Players.LocalPlayer
+    for i, c in pairs(v.Character["God Halo"]:GetDescendants()) do
+    if c.Name == "AccessoryWeld" then
+    c:Destroy()
+    end
+    end
+end)
+
 
 Inv:Button("Bug Firework",function()
     game.Players.LocalPlayer.Character.Firework.Part.Mesh:Destroy()
