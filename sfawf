@@ -704,6 +704,9 @@ Pl:Toggle("Auto Rebirh Lvl 100",function(t)
     end)
 end)
 
+Pl:Label("Noclip")
+
+
 Pl:Textbox("Keybind", true,function(t)
     getgenv().nck = t
     notif("+Added " .. t, 3)
@@ -728,6 +731,43 @@ Pl:Button("Noclip",function()
             loop2 = false
         end
 end)
+end)
+
+Pl:Label("Extra")
+
+Pl:Label("Spam")
+
+Pl:Textbox("Text", true,function(t)
+    getgenv().txt = t
+    notif("Item set to " .. t, 3)
+end)
+
+Pl:Textbox("Speed", true,function(t)
+    getgenv().txtspeed = t
+    notif("Item set to " .. t, 3)
+end)
+
+Pl:Textbox("Keybind", true,function(t)
+    getgenv().keybindtxt = t
+    notif("Item set to " .. t, 3)
+end)
+
+Pl:Toggle("Spam",function(t)
+    getgenv().spam = t
+    spawn(function()
+        game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
+            if key == getgenv().keybindtxt then
+        while getgenv().spam == true and wait(getgenv().txtspeed) do
+            local args = {
+                [1] = getgenv().txt,
+                [2] = "All"
+            }
+            
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+        end
+        end
+        end)
+    end)
 end)
 
 Farm:Label("AFK Eat")
