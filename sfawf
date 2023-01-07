@@ -83,6 +83,32 @@ Main:Toggle("Selection",function(t)
     end)
 end)
 
+Main:Toggle("Hide Name List",function(t)
+    getgenv().tplantc = t
+    spawn(function()
+        while getgenv().tplantc == true and wait() do
+            local plr = game.Players.LocalPlayer
+            local plrr = game.Players.LocalPlayer.Name
+            game:GetService("Players").LocalPlayer.PlayerGui.SecondaryGui.PlayerList.List[plrr].Visible = false
+        end
+    end)
+end)
+
+Main:Toggle("Hide Lvl",function(t)
+    getgenv().goldspa = t
+    spawn(function()
+        if getgenv().goldspa then
+            wait()
+            pcall(
+                function()
+                    game:GetService("Players").RatatuiHelp.PlayerGui.MainGui.Panels.Topbar.EssenceBar.TextLabel.Visible = false
+                end)
+        elseif not getgenv().goldspa then
+            game:GetService("Players").RatatuiHelp.PlayerGui.MainGui.Panels.Topbar.EssenceBar.TextLabel.Visible = true
+        end
+    end)
+end)
+
 ---HEALS-------------------------------------------------------------------------------------------
 
 -- global variables
@@ -492,6 +518,34 @@ end)
 Heals:Toggle("AutoHeal - Strawberry",function(Value)
     _G.AutoStraw5 = Value
     AutoStraw5()
+end)
+
+Heals:Label("Another Heal Method")
+
+Heals:Textbox("Fruit Name", true,function(t)
+    getgenv().nono = t
+    notif("+Added " .. t, 3)
+end)
+
+Heals:Textbox("Speed (4 recommend)", true,function(t)
+    getgenv().nospeed = t
+    notif("+Added ".."x".. t.."Speed", 3)
+end)
+
+Heals:Toggle("Auto Heal",function(t)
+    getgenv().myautoheal = t
+    spawn(function()
+        while getgenv().myautoheal == true and wait() do
+            function food()
+                for i=1, getgenv().nospeed do
+                game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer(getgenv().nono) 
+                end
+                end
+                if game.Players.LocalPlayer.Character.Humanoid.Health < 100 then
+                food()
+                end
+        end
+    end)
 end)
 
 --COMBAT--------------------------------------------------------------------------------------------
